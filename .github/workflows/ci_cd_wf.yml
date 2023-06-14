@@ -27,8 +27,8 @@ jobs:
           
       - name: Run tests with coverage
         run: |
-          python -m pytest -v --cov=my_module --cov-report=xml:pytest.xml --cov-report=term-missing
-
+          python -m pytest -v --cov=tests.test_calculator --cov-report=xml:pytest.xml --cov-report=term-missing
+      
       - name: Pytest coverage comment
         uses: MishaKav/pytest-coverage-comment@v1.1.47
         with:
