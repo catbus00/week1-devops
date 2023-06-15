@@ -25,12 +25,12 @@ jobs:
         run: |
           python -m pip install -r requirements.txt
           
-      - name: Run tests with coverage
+      - name: Build coverage file
         run: |
-          python -m pytest -v --cov=tests.test_calculator --cov-report=xml:coverage.xml --cov-report=term-missing
-          
+          python -m pytest --junitxml=pytest.xml --cov-report=term-missing:skip-covered --cov . | tee pytest-coverage.txt
+
       - name: Pytest coverage comment
-        uses: MishaKav/pytest-coverage-comment@v1.1.47
+        uses: MishaKav/pytest-coverage-comment@main
         with:
-          pytest-coverage-path: ./coverage.xml
+          pytest-coverage-path: ./pytest-coverage.txt
           junitxml-path: ./pytest.xml
